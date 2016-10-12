@@ -1,6 +1,13 @@
 
 
-V�der ikoner:
+Väder ikoner:
 
 http://forecastfont.iconvau.lt/
 http://erikflowers.github.io/weather-icons/
+
+
+Väder API:
+https://darksky.net/dev/
+
+Graph bibliotek:
+http://www.highcharts.com/demo
