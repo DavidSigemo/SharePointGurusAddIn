@@ -44,9 +44,16 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Pages\ClientWebPartWeather\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{86bd9802-12af-468a-a242-dc55a97f5603}</SharePointProjectItemId>
+    </None>
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8685a693-b932-4b58-b046-f8afc41527b2}</SharePointProjectItemId>
     </None>
+    <Content Include="Pages\ClientWebPartWeather.aspx" />
+    <Content Include="Pages\ClientWebPartWeather\Elements.xml">
+      <OpcRelationship>feature-elementmanifest</OpcRelationship>
+    </Content>
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
   </ItemGroup>
