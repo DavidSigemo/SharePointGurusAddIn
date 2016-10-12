@@ -28,7 +28,7 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
     <div>
-        <p id="message">
+        <p id="message1s">
             
         </p>
     </div>
