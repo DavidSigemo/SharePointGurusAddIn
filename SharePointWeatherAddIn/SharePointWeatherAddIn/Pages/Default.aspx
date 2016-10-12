@@ -15,5 +15,10 @@
 
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <div></div>
+    <div>
+        
+
+
+
+    </div>
 </asp:Content>

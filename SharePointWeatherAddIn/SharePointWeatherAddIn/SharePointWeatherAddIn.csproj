@@ -50,12 +50,16 @@
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8685a693-b932-4b58-b046-f8afc41527b2}</SharePointProjectItemId>
     </None>
+    <Content Include="Elements.xml" />
     <Content Include="Pages\ClientWebPartWeather.aspx" />
     <Content Include="Pages\ClientWebPartWeather\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
     </Content>
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
+    <None Include="SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6ea57687-3dd0-4c30-96b3-555da5828651}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.9.1.min.map" />
