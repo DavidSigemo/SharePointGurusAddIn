@@ -24,3 +24,20 @@ $.ajax({
         console.log(responseData);
     }
 });
+
+
+// Christian added - parameter med si //
+    var url = 'https://api.darksky.net/forecast/';
+    var apiKey = 'MinNyckel';
+    var unit = 'si'; 
+    var lat = 59.345013;
+    var lng = 18.021977;
+
+    jQuery.ajax({
+        url: url + apiKey + "/" + lat + "," + lng + "?callback=?&units=" + unit,
+        type: 'GET',
+        dataType: 'jsonp',
+        timeout: 3000
+    })
+    
+    
