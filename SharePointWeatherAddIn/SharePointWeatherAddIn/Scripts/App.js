@@ -1,4 +1,8 @@
-﻿'use strict';
+﻿
+
+/* christian testar */
+
+'use strict';
 
 ExecuteOrDelayUntilScriptLoaded(initializePage, "sp.js");
 

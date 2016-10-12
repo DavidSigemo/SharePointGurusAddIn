@@ -1,12 +1,44 @@
 ﻿(function () {
-    var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
-    $.ajax({
-        url: url,
-        dataType: "jsonp",
-        success: function (responseData) {
-            initGraph(responseData);
-        }
-    });
+    "use strict";
+
+    function init() {
+        getWeatherData();
+        eventhandlers();
+    }
+
+    var eventhandlers = function () {
+        console.log('event handlers');
+        $('#graphTabActive').click(function () {
+            console.log("graphTabClick");
+            var graphTab = $('#graphTab');
+            var dataTab = $('#dataTab');
+
+            graphTab.addClass('active');
+            dataTab.removeClass('active');
+        });
+
+        $('#graphTabActive').click(function () {
+            console.log("dataTabClick");
+            var graphTab = $('#graphTab');
+            var dataTab = $('#dataTab');
+
+            dataTab.addClass('active');
+            graphTab.removeClass('active');
+        });
+    }
+
+    var getWeatherData = function () {
+        console.log('getWeatherData');
+
+        var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
+        $.ajax({
+            url: url,
+            dataType: "jsonp",
+            success: function (responseData) {
+                initGraph(responseData);
+            }
+        });
+    }
 
     var initGraph = function (weatherData) {
         console.log(weatherData);
