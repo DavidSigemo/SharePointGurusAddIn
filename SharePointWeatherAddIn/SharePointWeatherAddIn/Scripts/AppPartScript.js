@@ -1,33 +1,36 @@
 ﻿(function () {
     "use strict";
+    init();
 
     function init() {
         getWeatherData();
         eventhandlers();
     }
 
-    var eventhandlers = function () {
-        console.log('event handlers');
+    function eventhandlers() {
+        console.log('eventhandler');
         $('#graphTabActive').click(function () {
-            console.log("graphTabClick");
+            console.log('graphClick');
             var graphTab = $('#graphTab');
             var dataTab = $('#dataTab');
 
             graphTab.addClass('active');
             dataTab.removeClass('active');
+            $('#chartTab').css("display", "block");
         });
 
-        $('#graphTabActive').click(function () {
-            console.log("dataTabClick");
+        $('#dataTabActive').click(function () {
+            console.log('dataClick');
             var graphTab = $('#graphTab');
             var dataTab = $('#dataTab');
 
             dataTab.addClass('active');
             graphTab.removeClass('active');
+            $('#chartTab').css("display", "none");
         });
     }
 
-    var getWeatherData = function () {
+    function getWeatherData() {
         console.log('getWeatherData');
 
         var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
@@ -41,12 +44,9 @@
     }
 
     var initGraph = function (weatherData) {
-        console.log(weatherData);
-        console.log(typeof (weatherData));
         var series = [];
-        avgTemps = []
+        var avgTemps = []
         $.each(weatherData.hourly.data, function (index, value) {
-            //console.log(value.apparentTemperature);
             avgTemps.push(Math.round(((value.temperature - 32) * 5) / 9));
         })
         series.push({

@@ -26,7 +26,7 @@
         </ul>
         <br/>
         <div class="tabContent">
-            <div class="container">
+            <div id="chartTab" class="container">
                 <div id="chart"></div>
             </div>
         </div>
