@@ -29,6 +29,9 @@
 			<div id="chartTab" class="container">
 				<div id="chart"></div>
 			</div>
+            <div id="infoTab" class="container">
+                <h1>Test</h1>
+            </div>
 		</div>
 	</div>
 </asp:Content>
