@@ -10,5 +10,7 @@
     <File Path="Scripts\highcharts.js" Url="Scripts/highcharts.js" ReplaceContent="TRUE" />
     <File Path="Scripts\bootstrap.min.js" Url="Scripts/bootstrap.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\bootstrap.js" Url="Scripts/bootstrap.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\WebPartScript.js" Url="Scripts/WebPartScript.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\WebPartStyle.css" Url="Scripts/WebPartStyle.css" ReplaceContent="TRUE" />
   </Module>
 </Elements>

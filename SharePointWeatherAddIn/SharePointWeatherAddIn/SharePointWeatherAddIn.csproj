@@ -90,6 +90,8 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\AppPartScript.js" />
+    <Content Include="Scripts\WebPartScript.js" />
+    <Content Include="Scripts\WebPartStyle.css" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
