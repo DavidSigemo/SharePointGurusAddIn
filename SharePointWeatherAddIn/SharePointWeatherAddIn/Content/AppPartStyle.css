@@ -14,14 +14,19 @@
 
 #dataContent {
     text-align: center;
+    padding: 5px;
 }
 
 #dataWeatherIcon {
-    height: 50px;
+    height: 25px;
     /*width: 100px;*/
 }
 
 #dataLocationSearch {
     vertical-align: bottom;
     margin-bottom: 5px;
+}
+
+#dataLocation {
+    display: inline;
 }
