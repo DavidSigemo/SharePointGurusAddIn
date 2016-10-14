@@ -1,11 +1,27 @@
-﻿body
-{
+﻿#graphContent {
+    display: none;
 }
 
-#infoTab{
-    display:none;
-}
-
-#weatherPageContent{
+#weatherPageContent {
     padding: 5px;
+}
+
+#tabContent {
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    /*height: 100%;*/
+}
+
+#dataContent {
+    text-align: center;
+}
+
+#dataWeatherIcon {
+    height: 50px;
+    /*width: 100px;*/
+}
+
+#dataLocationSearch {
+    vertical-align: bottom;
+    margin-bottom: 5px;
 }
