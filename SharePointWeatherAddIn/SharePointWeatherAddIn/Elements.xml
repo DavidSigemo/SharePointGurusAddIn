@@ -8,5 +8,9 @@
     <File Path="fonts\glyphicons-halflings-regular.svg" Url="fonts/glyphicons-halflings-regular.svg" ReplaceContent="TRUE" />
     <File Path="fonts\glyphicons-halflings-regular.eot" Url="fonts/glyphicons-halflings-regular.eot" ReplaceContent="TRUE" />
     <File Path="favicon.ico" Url="favicon.ico" ReplaceContent="TRUE" />
+    <File Path="fonts\iconvault_forecastfont.eot" Url="fonts/iconvault_forecastfont.eot" ReplaceContent="TRUE" />
+    <File Path="fonts\iconvault_forecastfont.svg" Url="fonts/iconvault_forecastfont.svg" ReplaceContent="TRUE" />
+    <File Path="fonts\iconvault_forecastfont.ttf" Url="fonts/iconvault_forecastfont.ttf" ReplaceContent="TRUE" />
+    <File Path="fonts\iconvault_forecastfont.woff" Url="fonts/iconvault_forecastfont.woff" ReplaceContent="TRUE" />
   </Module>
 </Elements>

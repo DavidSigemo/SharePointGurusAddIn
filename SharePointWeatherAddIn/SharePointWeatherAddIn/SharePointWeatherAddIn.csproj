@@ -51,6 +51,9 @@
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="fonts\iconvault_forecastfont.eot" />
+    <None Include="fonts\iconvault_forecastfont.ttf" />
+    <None Include="fonts\iconvault_forecastfont.woff" />
     <None Include="packages.config" />
     <None Include="Pages\ClientWebPartWeather\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{86bd9802-12af-468a-a242-dc55a97f5603}</SharePointProjectItemId>
@@ -66,6 +69,7 @@
     <Content Include="Elements.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\iconvault_forecastfont.svg" />
     <Content Include="Pages\ClientWebPartWeather.aspx" />
     <Content Include="Pages\ClientWebPartWeather\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
