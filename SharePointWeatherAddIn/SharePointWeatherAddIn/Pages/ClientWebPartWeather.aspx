@@ -20,10 +20,11 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"></div>
                 <div class="panel-body">
-                   <ul>
-	                    <li class="icon-sun"></li>
-	                         
-	               </ul>
+                  <ul>
+	                     <li class="basecloud"></li>
+	                     <li class="icon-showers icon-sunny"></li>
+	                     <li class="icon-sun example"></li>
+	                </ul>
 
                 </div>
                 <div class="panel-footer"></div>

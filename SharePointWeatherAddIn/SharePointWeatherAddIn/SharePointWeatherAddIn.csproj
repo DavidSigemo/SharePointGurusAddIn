@@ -66,6 +66,7 @@
     <Content Include="Elements.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\skycons.js" />
     <Content Include="Pages\ClientWebPartWeather.aspx" />
     <Content Include="Pages\ClientWebPartWeather\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
