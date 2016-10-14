@@ -69,6 +69,7 @@
     <Content Include="Pages\ClientWebPartWeather.aspx" />
     <Content Include="Pages\ClientWebPartWeather\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
