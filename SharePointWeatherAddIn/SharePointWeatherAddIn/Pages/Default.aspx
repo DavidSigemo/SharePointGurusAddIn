@@ -20,15 +20,15 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
     <div id="container" class="col-md-12">
-        <ul id="appTabs" class="nav nav-tabs">
-            <li id="graphTab" class="active"><a id="graphTabActive" href="#">Vädergraf</a></li>
-            <li id="dataTab"><a id="dataTabActive" href="#">Väderdata</a></li>
-        </ul>
-        <br/>
-        <div class="tabContent">
-            <div id="chartTab" class="container">
-                <div id="chart"></div>
-            </div>
-        </div>
-    </div>
+		<ul id="appTabs" class="nav nav-tabs">
+			<li id="graphTab" class="active"><a id="graphTabActive" href="#">Vädergraf</a></li>
+			<li id="dataTab"><a id="dataTabActive" href="#">Väderdata</a></li>
+		</ul>
+		<br/>
+		<div class="tabContent">
+			<div id="chartTab" class="container">
+				<div id="chart"></div>
+			</div>
+		</div>
+	</div>
 </asp:Content>

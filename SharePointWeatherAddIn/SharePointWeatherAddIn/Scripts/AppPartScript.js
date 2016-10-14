@@ -8,9 +8,9 @@
     }
 
     function eventhandlers() {
-        console.log('eventhandler');
-        $('#graphTabActive').click(function () {
-            console.log('graphClick');
+        console.log("eventhandlers start");
+        $('#graphTabActive').on("click", function () {
+            console.log("graphTabActive click");
             var graphTab = $('#graphTab');
             var dataTab = $('#dataTab');
 
@@ -19,8 +19,8 @@
             $('#chartTab').css("display", "block");
         });
 
-        $('#dataTabActive').click(function () {
-            console.log('dataClick');
+        $('#dataTabActive').on("click", function () {
+            console.log("dataTabActive click");
             var graphTab = $('#graphTab');
             var dataTab = $('#dataTab');
 
@@ -31,8 +31,6 @@
     }
 
     function getWeatherData() {
-        console.log('getWeatherData');
-
         var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
         $.ajax({
             url: url,
@@ -47,6 +45,7 @@
         var series = [];
         var avgTemps = []
         $.each(weatherData.hourly.data, function (index, value) {
+            //console.log(value.apparentTemperature);
             avgTemps.push(Math.round(((value.temperature - 32) * 5) / 9));
         })
         series.push({
@@ -54,7 +53,6 @@
             data: avgTemps
         });
 
-        console.log(series);
         $('#chart').highcharts({
             title: {
                 text: 'Monthly Average Temperature',
