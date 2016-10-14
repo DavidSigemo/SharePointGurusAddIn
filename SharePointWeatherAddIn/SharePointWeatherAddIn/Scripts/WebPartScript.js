@@ -4,7 +4,11 @@
         url: url,
         dataType: "jsonp",
         success: function (responseData) {
-            initGraph(responseData);
+            var skycons = new Skycons({ "color": "black" });
+            console.log(responseData);
+            skycons.add("testCanvas", responseData.currently.icon);
         }
     });
 });
+
+
