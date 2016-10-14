@@ -9,9 +9,6 @@
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.svg" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.eot" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="favicon.ico" Type="ElementFile" />
-    <ProjectItemFile Source="fonts\iconvault_forecastfont.eot" Target="fonts\" Type="ElementFile" />
-    <ProjectItemFile Source="fonts\iconvault_forecastfont.svg" Target="fonts\" Type="ElementFile" />
-    <ProjectItemFile Source="fonts\iconvault_forecastfont.ttf" Target="fonts\" Type="ElementFile" />
-    <ProjectItemFile Source="fonts\iconvault_forecastfont.woff" Target="fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\skycons.js" Target="fonts\" Type="ElementFile" />
   </Files>
 </ProjectItem>

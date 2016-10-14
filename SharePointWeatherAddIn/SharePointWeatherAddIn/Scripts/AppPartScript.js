@@ -8,25 +8,24 @@
     }
 
     function eventhandlers() {
-        console.log("eventhandlers start");
-        $('#graphTabActive').on("click", function () {
-            console.log("graphTabActive click");
+        $('#graphTabActive').on('click', function () {
             var graphTab = $('#graphTab');
             var dataTab = $('#dataTab');
 
             graphTab.addClass('active');
             dataTab.removeClass('active');
-            $('#chartTab').css("display", "block");
+            $('#graphContent').css("display", "block");
+            $('#dataContent').css("display", "none");
         });
 
-        $('#dataTabActive').on("click", function () {
-            console.log("dataTabActive click");
+        $('#dataTabActive').on('click', function () {
             var graphTab = $('#graphTab');
             var dataTab = $('#dataTab');
 
             dataTab.addClass('active');
             graphTab.removeClass('active');
-            $('#chartTab').css("display", "none");
+            $('#graphContent').css("display", "none");
+            $('#dataContent').css("display", "block");
         });
     }
 
@@ -53,7 +52,7 @@
             data: avgTemps
         });
 
-        $('#chart').highcharts({
+        $('#highchart').highcharts({
             title: {
                 text: 'Monthly Average Temperature',
                 x: -20 //center

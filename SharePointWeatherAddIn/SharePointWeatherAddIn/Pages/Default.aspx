@@ -13,25 +13,25 @@
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="Stylesheet" type="text/css" href="../Content/AppPartStyle.css" />
     <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../Scripts/AppPartScript.js"></script>
 
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <div id="container" class="col-md-12">
-		<ul id="appTabs" class="nav nav-tabs">
-			<li id="graphTab" class="active"><a id="graphTabActive" href="#">Vädergraf</a></li>
-			<li id="dataTab"><a id="dataTabActive" href="#">Väderdata</a></li>
-		</ul>
-		<br/>
-		<div class="tabContent">
-			<div id="chartTab" class="container">
-				<div id="chart"></div>
-			</div>
-            <div id="infoTab" class="container">
-                <h1>Test</h1>
+    <div id="weatherPageContent" class="col-md-12">
+        <ul id="appTabs" class="nav nav-tabs">
+            <li id="dataTab" class="active"><a id="dataTabActive" href="#">Väderdata</a></li>
+            <li id="graphTab"><a id="graphTabActive" href="#">Vädergraf</a></li>
+        </ul>
+        <br />
+        <div class="tabContent">
+            <div id="dataContent" class="container">
+                <h1>TestAsdf</h1>
             </div>
-		</div>
-	</div>
+            <div id="graphContent" class="container">
+                <div id="highchart"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../Scripts/AppPartScript.js"></script>
 </asp:Content>

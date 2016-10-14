@@ -1,3 +1,11 @@
 ﻿body
 {
 }
+
+#infoTab{
+    display:none;
+}
+
+#weatherPageContent{
+    padding: 5px;
+}
