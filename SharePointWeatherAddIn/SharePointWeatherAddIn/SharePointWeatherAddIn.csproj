@@ -70,6 +70,7 @@
     <Content Include="Pages\ClientWebPartWeather.aspx" />
     <Content Include="Pages\ClientWebPartWeather\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
@@ -103,11 +104,11 @@
     <Content Include="Content\App.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\AppIcon.png">
+    <Content Include="fonts\Images\AppIcon.png">
       <OpcRelationship>manifest-icon</OpcRelationship>
     </Content>
-    <Content Include="Images\Elements.xml" />
-    <None Include="Images\SharePointProjectItem.spdata">
+    <Content Include="fonts\Images\Elements.xml" />
+    <None Include="fonts\Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1d5dfb70-8239-4d56-b1c0-4150e15e0e4e}</SharePointProjectItemId>
     </None>
   </ItemGroup>
