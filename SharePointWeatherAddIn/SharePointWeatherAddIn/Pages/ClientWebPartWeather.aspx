@@ -11,7 +11,7 @@
     <link href="../Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <script src="../Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
-    
+    <script src="../fonts/skycons.js"></script>
     <title></title>
 </head>
 <body>

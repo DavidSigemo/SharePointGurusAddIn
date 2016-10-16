@@ -9,7 +9,15 @@
 	  font-style: normal;
 	}
 
-	.icon-sun::after {
+@font-face {
+    font-family: 'glyphicons-halflings-regular';
+    src: url('glyphicons-halflings-regular.eot') format('embedded-opentype');
+    src: url('glyphicons-halflings-regular.ttf') format('truetype');
+    src: url('lyphicons-halflings-regular.woff') format('woff');
+    background-image: url('glyphicons-halflings-regular.svg');
+}
+
+.icon-sun::after {
 	content: "\f113";
 	color: rgb(255, 165, 0);
 	position: absolute;
