@@ -1,8 +1,14 @@
 ﻿$(document).ready(function () {
-    $.get("https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237", function (response) {
-        console.log(response);
-        $("#name").text(response.name);
-        $("#temp").text(response.main.temp);
-        $("#humidity").text(response.main.humidity);
+    var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
+    $.ajax({
+        url: url,
+        dataType: "jsonp",
+        success: function (responseData) {
+            var skycons = new Skycons({ "color": "black" });
+            console.log(responseData);
+            skycons.add("testCanvas", responseData.currently.icon);
+        }
     });
 });
+
+

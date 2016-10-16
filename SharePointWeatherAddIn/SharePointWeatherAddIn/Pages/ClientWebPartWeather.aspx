@@ -15,15 +15,14 @@
     <title></title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading"></div>
-                <div class="panel-body">
+                <div class="panel-body" style="margin:0px;" >
                   <ul>
-	                     <li class="basecloud"></li>
-	                     <li class="icon-showers icon-sunny"></li>
-	                     <li class="icon-sun example"></li>
+	                     
+                      <li><canvas id="testCanvas"></canvas></li>
 	                </ul>
 
                 </div>
@@ -420,7 +419,9 @@
 
 
      <link href="../Scripts/WebPartStyle.css" rel="stylesheet" />
+    <script src="../fonts/skycons.js" type="text/javascript"></script>
      <script src="../Scripts/WebPartScript.js"></script>
+
     
 </body>
 </html>
