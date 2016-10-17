@@ -5,8 +5,10 @@
         dataType: "jsonp",
         success: function (responseData) {
             var skycons = new Skycons({ "color": "black" });
-            console.log(responseData.currently.icon);
+            skycons.play();
+            console.log(responseData.daily.data[1].icon);
             skycons.add("testCanvas", responseData.currently.icon);
+            skycons.add("testCanvas1", responseData.currently.icon);
             getWeatherData();
         }
     });
@@ -27,7 +29,7 @@
     var newDate1 = new Date();
     newDate1.setDate(newDate1.getDate() + 1);
     $('#Date1').html(dayNames1[newDate1.getDay()]);
-
+    
     var newDate2 = new Date();
     newDate2.setDate(newDate2.getDate() + 2);
     $('#Date2').html(dayNames1[newDate2.getDay()]);
@@ -147,8 +149,31 @@
         var directions = ["North", "North-North East", "North East", "East-North East", "East", "East-South East", "South East", "South-South East", "South", "South-South West", "South West", "West-South West", "West", "West-North West", "North West", "North-North West"]
         windDirectionText.text(directions[Math.round(windDirection % 16)]);
         windDirectionDetailText.text(weatherData.currently.windBearing);
+
+        var forecast = weatherData.daily.data.slice(1); //Ta bort första dagen eftersom vi inte är intresserade av idag
+        for (var i = 0; i < forecast.length; i++) {
+            var day = moment.unix(forecast[i].time).format("ddd");
+
+            $('#forecastDay' + (i + 1)).text(day);
+
+            var forecastAvgTemp = (forecast[i].temperatureMax + forecast[i].temperatureMin) / 2;
+            var tempUnit = (forecast[i].temperatureMax + forecast[i].temperatureMin) / 2;
+            if (tempUnit === "C") {
+                forecastAvgTemp = ((forecastAvgTemp - 32) * 5) / 9;
+            }
+            forecastAvgTemp = Math.round(forecastAvgTemp);
+
+            forecastAvgTemp = forecastAvgTemp + "\u00B0".concat(tempUnit);
+            $('#forecastTemp' + (i + 1)).text(forecastAvgTemp);
+
+            skycons.add('forecasticon' + (i + 1), forecast[i].icon);
+
+        }
+
     }
 
 });
 
+
+  
 

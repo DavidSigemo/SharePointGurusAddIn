@@ -29,15 +29,13 @@
                         <div id="point" style="float: left;">:</div>
                         <div id="sec"></div>
 
-
-
                     </div>
 
                 </div>
 
                 <div class="panel-body">
 
-                    <canvas id="testCanvas" class="img"></canvas>
+                    <canvas id="forecastDay" class="img"> Max</canvas>
                     <div class="col-sm-12">
                         <span>
                             <h3 id="dataLocation"></h3>
@@ -70,10 +68,15 @@
                     <div class="box2">
                         <br>
                         <div id="Date1"></div>
+                        <br />
+                       
+                      
                     </div>
                     <div class="box2">
                         <br>
-                        <div id="Date2"></div>
+                       <div id="Date2"></div>
+                        
+                        
                     </div>
                     <div class="box2">
                         <br>
@@ -92,14 +95,11 @@
         </div>
     </div>
 
-
-
-
-
     <link href="../Scripts/WebPartStyle.css" rel="stylesheet" />
     <script src="../fonts/skycons.js" type="text/javascript"></script>
+    <script src="../Scripts/moment.min.js"></script>
     <script src="../Scripts/WebPartScript.js"></script>
-
 
 </body>
 </html>
+
