@@ -29,13 +29,15 @@
                         <div id="point" style="float: left;">:</div>
                         <div id="sec"></div>
 
+
+
                     </div>
 
                 </div>
 
                 <div class="panel-body">
 
-                    <canvas id="forecastDay" class="img"> Max</canvas>
+                    <canvas id="testCanvas" class="img"></canvas>
                     <div class="col-sm-12">
                         <span>
                             <h3 id="dataLocation"></h3>
@@ -68,38 +70,55 @@
                     <div class="box2">
                         <br>
                         <div id="Date1"></div>
+                        <br>
+                       <canvas id="testCanvas1" class="img" style="height:80px; width:90px;"></canvas>
                         <br />
-                       
-                      
+                        
                     </div>
                     <div class="box2">
                         <br>
-                       <div id="Date2"></div>
-                        
-                        
+                        <div id="Date2"></div>
+                          <br>
+                       <canvas id="testCanvas2" class="img" style="height:80px; width:90px;"></canvas>
+                        <br />
+                       
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date3"></div>
+                          <br>
+                       <canvas id="testCanvas3" class="img" style="height:80px; width:90px;"></canvas>
+                        <br />
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date4"></div>
+                          <br>
+                       <canvas id="testCanvas4" class="img" style="height:80px; width:90px;"></canvas>
+                        <br />
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date5"></div>
+                          <br>
+                       <canvas id="testCanvas5" class="img" style="height:80px; width:90px;"></canvas>
+                        <br />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
+
+
+
     <link href="../Scripts/WebPartStyle.css" rel="stylesheet" />
+    <script src="../Scripts/moment.js"></script>
+    <script src="../Scripts/js.cookie.js"></script>
     <script src="../fonts/skycons.js" type="text/javascript"></script>
-    <script src="../Scripts/moment.min.js"></script>
     <script src="../Scripts/WebPartScript.js"></script>
+    
 
 </body>
 </html>
-
