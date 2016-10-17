@@ -15,6 +15,7 @@
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="Stylesheet" type="text/css" href="../Content/AppPartStyle.css" />
     <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    
 
 </asp:Content>
 
