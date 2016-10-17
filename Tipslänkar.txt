@@ -13,31 +13,22 @@ Graph bibliotek:
 http://www.highcharts.com/demo
 
 
-Exempel-anrop DarkSky:
+var forecast = weatherData.daily.data.slice(1); //Ta bort första dagen eftersom vi inte är intresserade av idag
+        for (var i = 0; i < forecast.length; i++) {
+            var day = moment.unix(forecast[i].time).format("ddd");
 
-var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
-$.ajax({
-    url: url,
-    dataType: "jsonp",
-    success: function (responseData) {
-        window.alert('Data retrieved!');
-        console.log(responseData);
-    }
-});
+            $('#forecastDay' + (i + 1)).text(day);
 
+            var forecastAvgTemp = (forecast[i].temperatureMax + forecast[i].temperatureMin) / 2;
+            if (tempUnit === "C") {
+                forecastAvgTemp = ((forecastAvgTemp - 32) * 5) / 9;
+            }
+            forecastAvgTemp = Math.round(forecastAvgTemp);
 
-// Christian added - parameter med si //
-    var url = 'https://api.darksky.net/forecast/';
-    var apiKey = 'MinNyckel';
-    var unit = 'si'; 
-    var lat = 59.345013;
-    var lng = 18.021977;
+            forecastAvgTemp = forecastAvgTemp + "\u00B0".concat(tempUnit);
+            $('#forecastTemp' + (i + 1)).text(forecastAvgTemp);
 
-    jQuery.ajax({
-        url: url + apiKey + "/" + lat + "," + lng + "?callback=?&units=" + unit,
-        type: 'GET',
-        dataType: 'jsonp',
-        timeout: 3000
-    })
-    
+            skycons.add('forecasticon' + (i + 1), forecast[i].icon);
+
+        }
     
