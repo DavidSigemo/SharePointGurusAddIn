@@ -5,8 +5,6 @@
     var tempUnit = Cookies.get("tempUnit") !== undefined ? Cookies.get("tempUnit") : "C";
     $('#activeLocationInput').val(activeLocation);
     $('#tempUnitInput').val(tempUnit);
-    console.log("activeLocation", activeLocation);
-    console.log("tempUnit", tempUnit);
 
     init();
 
@@ -67,8 +65,11 @@
         $(window).resize(function () {
             var height = $('#graphContent').height() / 2;
             var width = $('#graphContent').width();
-            $("#highchart-tempDay").highcharts().setSize(width, height, true);
-            $("#highchart-MaxMin").highcharts().setSize(width, height, true);
+            
+            if ($("#highchart-tempDay").highcharts() !== undefined && $("#highchart-MaxMin").highcharts() !== undefined) {
+                $("#highchart-tempDay").highcharts().setSize(width, height, true);
+                $("#highchart-MaxMin").highcharts().setSize(width, height, true);
+            }
         });
 
         $('#saveSettingsButton').on('click', function () {

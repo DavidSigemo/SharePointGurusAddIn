@@ -115,7 +115,7 @@
                         </label>
                     </div>
                     <div class="col-sm-12">
-                        <input type="button" id="saveSettingsButton" class="btn btn-primary" value="Save settings"/>
+                        <button type="button" id="saveSettingsButton" class="btn btn-primary">Save settings</button>
                     </div>
                 </div>
                 <hr />
