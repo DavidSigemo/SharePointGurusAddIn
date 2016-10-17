@@ -12,5 +12,10 @@
     <File Path="Scripts\bootstrap.js" Url="Scripts/bootstrap.js" ReplaceContent="TRUE" />
     <File Path="Scripts\WebPartScript.js" Url="Scripts/WebPartScript.js" ReplaceContent="TRUE" />
     <File Path="Scripts\WebPartStyle.css" Url="Scripts/WebPartStyle.css" ReplaceContent="TRUE" />
+    <File Path="Scripts\js.cookie.js" Url="Scripts/js.cookie.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

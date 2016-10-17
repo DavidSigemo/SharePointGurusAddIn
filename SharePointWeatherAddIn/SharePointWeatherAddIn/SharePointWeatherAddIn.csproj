@@ -66,6 +66,7 @@
     <Content Include="Elements.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\Images\WindDirArrow.png" />
     <Content Include="fonts\skycons.js" />
     <Content Include="Pages\ClientWebPartWeather.aspx" />
     <Content Include="Pages\ClientWebPartWeather\Elements.xml">
@@ -92,6 +93,11 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\AppPartScript.js" />
+    <Content Include="Scripts\js.cookie.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\WebPartScript.js" />
     <Content Include="Scripts\WebPartStyle.css" />
     <Content Include="Scripts\_references.js" />
