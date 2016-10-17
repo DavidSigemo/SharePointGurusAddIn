@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function (global) {
     "use strict";
     init();
 
@@ -16,6 +16,7 @@
             dataTab.removeClass('active');
             $('#graphContent').css("display", "block");
             $('#dataContent').css("display", "none");
+            $(window).resize();
         });
 
         $('#dataTabActive').on('click', function () {
@@ -25,7 +26,7 @@
             dataTab.addClass('active');
             graphTab.removeClass('active');
             $('#graphContent').css("display", "none");
-            $('#dataContent').css("display", "block");
+            $('#dataContent').css("display", "flex");
         });
 
         $('#dataLocationSearch').on('click', function () {
@@ -39,6 +40,14 @@
                 var lng = location.lng;
                 getWeatherData(lat, lng);
             })
+        });
+
+        $(window).resize(function () {
+            console.log("window resize");
+            var height = $('#graphContent').height() / 2;
+            var width = $('#graphContent').width();
+            $("#highchart-tempDay").highcharts().setSize(width, height, true);
+            $("#highchart-MaxMin").highcharts().setSize(width, height, true);
         });
     }
 
@@ -102,34 +111,47 @@
     }
 
     function initGraph(weatherData) {
-        var series = [];
-        var maxTemps = [];
-        var minTemps = [];
+        var location = weatherData.timezone.split('/')[1];
+        var seriesTempHourly = [];
+        var tempHourly = [];
+        var seriesMaxMin = [];
+        var maxTempsDaily = [];
+        var minTempsDaily = [];
+
+        $.each(weatherData.hourly.data, function (index, value) {
+            tempHourly.push(Math.round(((value.temperature - 32) * 5) / 9));
+        });
+        seriesTempHourly.push({
+            name: "Temperature for the next 48 hours",
+            data: tempHourly
+        });
         $.each(weatherData.daily.data, function (index, value) {
-            //console.log(value.apparentTemperature);
-            maxTemps.push(Math.round(((value.temperatureMax - 32) * 5) / 9));
-        })
-        series.push({
+            maxTempsDaily.push(Math.round(((value.temperatureMax - 32) * 5) / 9));
+        });
+        seriesMaxMin.push({
             name: 'Highest temperatures',
-            data: maxTemps
+            data: maxTempsDaily
         });
 
         $.each(weatherData.daily.data, function (index, value) {
             //console.log(value.apparentTemperature);
-            minTemps.push(Math.round(((value.temperatureMin - 32) * 5) / 9));
+            minTempsDaily.push(Math.round(((value.temperatureMin - 32) * 5) / 9));
         })
-        series.push({
+        seriesMaxMin.push({
             name: 'Lowest temperatures',
-            data: minTemps
+            data: minTempsDaily
         });
 
-        $('#highchart').highcharts({
+        console.log(seriesTempHourly);
+        console.log(seriesMaxMin);
+        $('#highchart-tempDay').highcharts({
             title: {
-                text: 'Temperature for the next 7 days',
+                text: 'Temperature for the next 48 hours for ' + location,
                 x: -20 //center
             },
             subtitle: {
-                text: 'Powered by Dark Sky',
+                text: '<a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>',
+                useHTML: true,
                 x: -20
             },
             xAxis: {
@@ -157,7 +179,66 @@
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: series
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                series: {
+                    allowPointSelect: true
+                }
+            },
+            series: seriesTempHourly
         });
+
+        $('#highchart-MaxMin').highcharts({
+            title: {
+                text: 'Highest and lowest temperatures for the next 7 days for ' + location,
+                x: -20 //center
+            },
+            subtitle: {
+                text: '<a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>',
+                useHTML: true,
+                x: -20
+            },
+            xAxis: {
+                // columns: ["0", "1", "2", "3", "4", "5", "6"]
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature (°C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+                series: {
+                    allowPointSelect: true
+                }
+            },
+            series: seriesMaxMin
+        });
+        $(window).resize();
     }
-})();
+})(this);
