@@ -2,64 +2,20 @@
 
     "use strict";
 
-    var activeLocation = Cookies.get("activeLocation") !== undefined ? decodeURI(Cookies.get("activeLocation")) : "Stockholm";
-    var tempUnit = Cookies.get("tempUnit") !== undefined ? Cookies.get("tempUnit") : "C";
-    $('#activeLocationInput').val(activeLocation);
-    $('#tempUnitInput').val(tempUnit);
+    var location = getQueryStringParameter("DefaultLocation");
+    var tempUnit = getQueryStringParameter("TempUnit");
 
-
-    var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
-    $.ajax({
-        url: url,
-        dataType: "jsonp",
-        success: function (responseData) {
-
-            //--------------------------------------------------------------------------------------------------------------------------------------
-            // Icon for current day and the next 5 days
-
-            var skycons = new Skycons({ "color": "black" });
-            console.log(responseData.currently.icon);
-            skycons.add("testCanvas", responseData.currently.icon);
-
-            var skycons1 = new Skycons({ "color": "black" });
-            console.log(responseData.daily.data[1].icon);
-            skycons1.add("testCanvas1", responseData.daily.data[1].icon);
-
-            var skycons2 = new Skycons({ "color": "black" });
-            console.log(responseData.daily.data[2].icon);
-            skycons2.add("testCanvas2", responseData.daily.data[2].icon);
-
-            var skycons3 = new Skycons({ "color": "black" });
-            console.log(responseData.daily.data[3].icon);
-            skycons3.add("testCanvas3", responseData.daily.data[3].icon);
-
-            var skycons4 = new Skycons({ "color": "black" });
-            console.log(responseData.daily.data[4].icon);
-            skycons4.add("testCanvas4", responseData.daily.data[4].icon);
-
-            var skycons5 = new Skycons({ "color": "black" });
-            console.log(responseData.daily.data[5].icon);
-            skycons5.add("testCanvas5", responseData.daily.data[5].icon);
-            
-            getWeatherData();
-            skycons.play();
-            skycons1.play();
-            skycons2.play();
-            skycons3.play();
-            skycons4.play();
-            skycons5.play();
-        }
-    });
-
+    console.log(location);
+    console.log(tempUnit);
 
     //--------------------------------------------------------------------------------------------------------------------------------------
     // Date and Time for current day and the next 5 days
 
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var dayNames = [ "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     var dayNames1 = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
-  
+
     var newDate = new Date();
     newDate.setDate(newDate.getDate());
     $('#Date').html(dayNames[newDate.getDay()] + ' ' + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
@@ -67,7 +23,7 @@
     var newDate1 = new Date();
     newDate1.setDate(newDate1.getDate() + 1);
     $('#Date1').html(dayNames1[newDate1.getDay()]);
-  
+
     var newDate2 = new Date();
     newDate2.setDate(newDate2.getDate() + 2);
     $('#Date2').html(dayNames1[newDate2.getDay()]);
@@ -90,16 +46,16 @@
     }, 1000);
 
     setInterval(function () {
-       
+
         var minutes = new Date().getMinutes();
-      
+
         $("#min").html((minutes < 10 ? "0" : "") + minutes);
     }, 1000);
 
     setInterval(function () {
-       
+
         var hours = new Date().getHours();
-      
+
         $("#hours").html((hours < 10 ? "0" : "") + hours);
     }, 1000);
 
@@ -109,12 +65,13 @@
     init();
 
     function init() {
-        temp();
+        getCoordinates(location);
     }
-   function temp() {
-       
+
+    function getCoordinates(locationParameter) {
+
         var apiKey = "AIzaSyB0O3kAHmPtbwUHu45zojOyMgFYGj51Kvc";
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat('Stockholm').concat('&key=').concat(apiKey);
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(locationParameter).concat('&key=').concat(apiKey);
 
         $.get(url, function (responseData) {
             var location = responseData.results[0].geometry.location;
@@ -124,7 +81,7 @@
         })
     };
 
-   function getWeatherData(lat, lng) {
+    function getWeatherData(lat, lng) {
 
         var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/".concat(lat).concat(",").concat(lng);
         $.ajax({
@@ -212,14 +169,56 @@
         minTempText5.text(minTemperature5);
 
 
+        // Icon for current day and the next 5 days
 
+        var skycons = new Skycons({ "color": "black" });
+        skycons.add("testCanvas", weatherData.currently.icon);
 
+        var skycons1 = new Skycons({ "color": "black" });
+        skycons1.add("testCanvas1", weatherData.daily.data[1].icon);
 
+        var skycons2 = new Skycons({ "color": "black" });
 
+        skycons2.add("testCanvas2", weatherData.daily.data[2].icon);
 
+        var skycons3 = new Skycons({ "color": "black" });
 
+        skycons3.add("testCanvas3", weatherData.daily.data[3].icon);
+
+        var skycons4 = new Skycons({ "color": "black" });
+
+        skycons4.add("testCanvas4", weatherData.daily.data[4].icon);
+
+        var skycons5 = new Skycons({ "color": "black" });
+
+        skycons5.add("testCanvas5", weatherData.daily.data[5].icon);
+
+        skycons.play();
+        skycons1.play();
+        skycons2.play();
+        skycons3.play();
+        skycons4.play();
+        skycons5.play();
     }
 
+
+    function getQueryStringParameter(urlParameterKey) {
+
+        var params = document.URL.split('?')[1].split('&');
+
+        var strParams = '';
+
+        for (var i = 0; i < params.length; i = i + 1) {
+
+            var singleParam = params[i].split('=');
+
+            if (singleParam[0] == urlParameterKey)
+
+                return decodeURIComponent(singleParam[1]);
+
+        }
+
+    }
 
 
 
