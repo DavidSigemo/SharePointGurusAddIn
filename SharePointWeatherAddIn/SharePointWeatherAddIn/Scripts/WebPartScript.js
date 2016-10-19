@@ -218,6 +218,8 @@
 
         }
 
+        //var appWebUrl = decodeURIComponent(getQueryStringParameter('SPAppWebUrl'));
+        //var hostUrl = decodeURIComponent(getQueryStringParameter('SPHostUrl'));
     }
 
 
