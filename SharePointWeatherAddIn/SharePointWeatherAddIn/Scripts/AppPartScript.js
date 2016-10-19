@@ -4,7 +4,8 @@
     $('#ctl00_PlaceHolderSiteName_onetidProjectPropertyTitle').text("SharePoint Gurus Weather AddIn");
 
     var savedWeather = JSON.parse(localStorage.getItem("weatherData"));
-    var activeLocation = Cookies.get("activeLocation") !== null ? decodeURI(Cookies.get("activeLocation")) : "Stockholm";
+    var activeLocation = (Cookies.get("activeLocation") !== null && Cookies.get("activeLocation") !== undefined) ? decodeURI(Cookies.get("activeLocation")) : "Stockholm";
+    Cookies.set("activeLocation", activeLocation);
     var tempUnit = Cookies.get("tempUnit") !== undefined ? Cookies.get("tempUnit") : "C";
     $('#defaultLocationInput').val(activeLocation);
     $('#tempUnitInput').val(tempUnit);
@@ -113,7 +114,7 @@
     function getCoordinates(location) {
         var savedLocation = JSON.parse(localStorage.getItem("locationCoordinates"));
 
-        if (savedLocation === null || location !== savedLocation.LocationName) {
+        if (savedLocation === null || location !== savedLocation.LocationName || location == "undefined") {
             var encodedLocation = encodeURI(location);
             var apiKey = "AIzaSyB0O3kAHmPtbwUHu45zojOyMgFYGj51Kvc";
             var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(encodedLocation).concat('&key=').concat(apiKey);
@@ -125,7 +126,7 @@
                 var savedCoordinates = { "LocationName": location, "Lat": lat, "Lng": lng };
                 localStorage.setItem("locationCoordinates", JSON.stringify(savedCoordinates));
                 getWeatherData(location, lat, lng);
-            })
+            })            
         } else {
             getWeatherData(savedLocation.LocationName, savedLocation.Lat, savedLocation.Lng);
         }
@@ -217,7 +218,7 @@
                 tempHourly.push([moment.unix(value.time).format("HH"), Math.round(tempCelcius)]);
             }
             else {
-                tempHourly.push([moment.unix(value.time).format("HH"), Math.round(tempCelcius)]);
+                tempHourly.push([moment.unix(value.time).format("HH"), Math.round(tempFahrenheit)]);
             }
         });
         seriesTempHourly.push({
@@ -225,13 +226,14 @@
             data: tempHourly
         });
         $.each(weatherData.daily.data, function (index, value) {
+            var currentWeatherTime = moment.unix(value.time).format("ddd");
             var tempFahrenheit = value.temperatureMax;
             if (tempUnit === "C") {
                 var tempCelcius = ((tempFahrenheit - 32) * 5) / 9;
-                maxTempsDaily.push(Math.round(tempCelcius));
+                maxTempsDaily.push([currentWeatherTime, Math.round(tempCelcius)]);
             }
             else {
-                maxTempsDaily.push(Math.round(tempFahrenheit));
+                maxTempsDaily.push([currentWeatherTime, Math.round(tempFahrenheit)]);
             }
         });
         seriesMaxMin.push({
@@ -240,20 +242,21 @@
         });
 
         $.each(weatherData.daily.data, function (index, value) {
+            var currentWeatherTime = moment.unix(value.time).format("dddd");
+
             var tempFahrenheit = value.temperatureMin;
             if (tempUnit === "C") {
                 var tempCelcius = ((tempFahrenheit - 32) * 5) / 9;
-                minTempsDaily.push(Math.round(tempCelcius));
+                minTempsDaily.push([currentWeatherTime, Math.round(tempCelcius)]);
             }
             else {
-                minTempsDaily.push(Math.round(tempFahrenheit));
+                minTempsDaily.push([currentWeatherTime, Math.round(tempFahrenheit)]);
             }
         })
         seriesMaxMin.push({
             name: 'Lowest temperatures',
             data: minTempsDaily
         });
-        console.log(seriesTempHourly[0].data[0][0]);
 
         $('#highchart-tempDay').highcharts({
             title: {
@@ -271,7 +274,6 @@
                     enabled: true,
                     formatter: function () { return seriesTempHourly[0].data[this.value][0]; },
                 }
-                // columns: ["0", "1", "2", "3", "4", "5", "6"]
             },
             yAxis: {
                 title: {
@@ -319,7 +321,11 @@
                 x: -20
             },
             xAxis: {
-                tickInterval: 1
+                tickInterval: 1,
+                labels: {
+                    enabled: true,
+                    formatter: function () { return seriesMaxMin[0].data[this.value][0]; },
+                }
             },
             yAxis: {
                 title: {
