@@ -69,7 +69,7 @@
     }
 
     function getCoordinates(locationParameter) {
-
+        
         var apiKey = "AIzaSyB0O3kAHmPtbwUHu45zojOyMgFYGj51Kvc";
         var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(locationParameter).concat('&key=').concat(apiKey);
 
@@ -108,8 +108,15 @@
         var location = weatherData.timezone.split('/')[1];
         locationText.text(location);
 
-        var temperature = (Math.round(((weatherData.currently.temperature - 32) * 5) / 9));
-        temperatureText.text(temperature);
+        //var temperature = (Math.round(((weatherData.currently.temperature - 32) * 5) / 9));
+        //temperatureText.text(temperature);
+
+        var temperature = weatherData.currently.temperature;
+        if (tempUnit === "C") {
+            temperature = ((temperature - 32) * 5) / 9;
+        }
+        temperature = Math.round(temperature);
+        temperatureText.text(temperature + "\u00B0".concat(tempUnit));
 
         var weatherTextString = weatherData.currently.summary;
         weatherText.text(weatherTextString);
@@ -218,8 +225,6 @@
 
         }
 
-        //var appWebUrl = decodeURIComponent(getQueryStringParameter('SPAppWebUrl'));
-        //var hostUrl = decodeURIComponent(getQueryStringParameter('SPHostUrl'));
     }
 
 
