@@ -32,3 +32,47 @@ var forecast = weatherData.daily.data.slice(1); //Ta bort första dagen eftersom
 
         }
     
+    
+    
+// Christian added
+
+Om man vill ha språkstöd via Dark Sky API (t ex molnigt på olika språk), se då elementsfilen:
+      <Property
+        Name="Language"
+        Type="enum"
+        RequiresDesignerPermission="true"
+        WebCategory="App Settings"
+        WebDisplayName="Desired language"
+        DefaultValue="en">
+        <EnumItems>
+          <EnumItem WebDisplayName="English" Value="en"/>
+          <EnumItem WebDisplayName="German" Value="de"/>
+          <EnumItem WebDisplayName="Spanish" Value="es"/>
+          <EnumItem WebDisplayName="French" Value="fr"/>
+          <EnumItem WebDisplayName="Italian" Value="it"/>
+          <EnumItem WebDisplayName="Dutch" Value="nl"/>
+          <EnumItem WebDisplayName="Polish" Value="pl"/>
+          <EnumItem WebDisplayName="Swedish" Value="sv"/>
+        </EnumItems>
+      </Property>
+
+Hämta parametern...
+jQuery.ajax({url: urlForecast + apiKey + "/" + latitudeSetting + "," + longitudeSetting + "?callback=?&units=" + unit + '&lang=' + translationLang,
+type: 'GET',
+
+Lagra den..
+var translationLang = getQueryStringParameter('Language');
+    
+    
+    
+-----------------------------------------------------------------
+För språkstöd med resursfiler:
+Lägg in det i någon div t ex så här:
+<script type="text/javascript">cwToday.innerText = App_Message;</script>
+
+du måste ha en fil också, te x Resources.en-US.js med t ex följande innehåll per språk:
+var App_Message = "Today";
+
+glömt inte att referera resurs JS filen, t ex så här:
+<script type="text/javascript" src="../scripts/Resources.<SharePoint:EncodedLiteral runat='server' text='<%$Resources:wss,language_value%>' EncodeMethod='HtmlEncode' />.js"></script>
+
