@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ClientWebPart Name="ClientWebPartWeather" Title="ClientWebPartWeathertest" Description="ClientWebPartWeather" DefaultWidth="300" DefaultHeight="400">
+  <ClientWebPart Name="ClientWebPartWeather" Title="SharePoint Gurus Weather" Description="it is an app to view the weather side" DefaultWidth="500" DefaultHeight="800">
 
     <!-- Content element identifies the location of the page that will render inside the client web part
          Properties are referenced on the query string using the pattern _propertyName_
@@ -27,11 +27,11 @@
         WebDisplayName="Temperature Unit"
         WebDescription="Use this to set the unit to display temperature in."
         WebCategory="Weather Settings"
-        DefaultValue="&#x00B0;C"
+        DefaultValue="C"
         RequiresDesignerPermission="true">
         <EnumItems>
-          <EnumItem Value="&#x00B0;C" WebDisplayName="&#x00B0;C"/>
-          <EnumItem Value="&#x00B0;F" WebDisplayName="&#x00B0;F"/>
+          <EnumItem Value="C" WebDisplayName="&#x00B0;C"/>
+          <EnumItem Value="F" WebDisplayName="&#x00B0;F"/>
         </EnumItems>
       </Property>
 
