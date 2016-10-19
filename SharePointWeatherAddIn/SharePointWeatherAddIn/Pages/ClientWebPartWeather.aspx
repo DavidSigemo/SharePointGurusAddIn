@@ -12,6 +12,8 @@
     <script src="../Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="../fonts/skycons.js"></script>
+
+
     <title></title>
 </head>
 <body>
@@ -70,7 +72,7 @@
                     <div class="box2">
                         <br>
                         <div id="Date1"></div>
-                        <br>
+                        
                        <canvas id="testCanvas1" class="img" style="height:80px; width:90px;"></canvas>
                         <br />
                         
@@ -81,6 +83,8 @@
                           <br>
                        <canvas id="testCanvas2" class="img" style="height:80px; width:90px;"></canvas>
                         <br />
+
+                      
                        
                     </div>
                     <div class="box2">

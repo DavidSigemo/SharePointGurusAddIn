@@ -12,6 +12,9 @@
             var skycons1 = new Skycons({ "color": "black" });
             console.log(responseData.daily.data[1].icon);
             skycons1.add("testCanvas1", responseData.daily.data[1].icon);
+            
+            
+
 
             var skycons2 = new Skycons({ "color": "black" });
             console.log(responseData.daily.data[2].icon);
@@ -44,16 +47,17 @@
     var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
     var dayNames = ["Söndagen", "Måndagen", "Tisdagen", "Onsdagen", "Torsdagen", "Fredagen", "Lördagen"]
     var dayNames1 = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
+    
 
-  
     var newDate = new Date();
     newDate.setDate(newDate.getDate());
     $('#Date').html(dayNames[newDate.getDay()] + " den " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
-
+    
     var newDate1 = new Date();
     newDate1.setDate(newDate1.getDate() + 1);
     $('#Date1').html(dayNames1[newDate1.getDay()]);
-  
+    //$('minMaxTemp').html(daily.date.temperatureMax);
+
     var newDate2 = new Date();
     newDate2.setDate(newDate2.getDate() + 2);
     $('#Date2').html(dayNames1[newDate2.getDay()]);
@@ -132,6 +136,7 @@
         var windSpeedText = $('#dataWindSpeed');
         var windDirectionText = $('#dataWindDirection');
         var windDirectionDetailText = $('#dataWindDirectionDetailed');
+        
 
         var location = weatherData.timezone.split('/')[1];
         locationText.text(location);
@@ -150,9 +155,12 @@
         windDirectionText.text(directions[Math.round(windDirection % 16)]);
         windDirectionDetailText.text(weatherData.currently.windBearing);
 
+        
 
+     
     }
 
 });
+
 
 
