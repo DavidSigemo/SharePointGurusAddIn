@@ -15,7 +15,7 @@
     <title></title>
 </head>
 <body>
-    <div class="container" style="height: 800px; width: 500px;">
+    <div class="container aquamarine" id="wrapper" style="height: 800px; width: 500px;">
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -50,11 +50,11 @@
                             <strong><span id="dataTemperature"></span></strong>
                         </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div id="divSpeed" class="col-sm-4">
                         <h4>Wind speed</h4>
                         <p><strong><span id="dataWindSpeed"></span></strong></p>
                     </div>
-                    <div class="col-sm-4">
+                    <div id="divDirection" class="col-sm-4">
                         <h4>Wind direction</h4>
                         <strong>
                             <p id="dataWindDirection"></p>
@@ -64,7 +64,7 @@
 
                 </div>
 
-                <div class="panel-footer" style="height: 200px; width: 100%; padding: 0px;">
+                <div id="divPanel" class="panel-footer" style="height: 200px; width: 100%; padding: 0px;">
                     <div class="box2">
                         <br>
                         <div id="Date1"></div>

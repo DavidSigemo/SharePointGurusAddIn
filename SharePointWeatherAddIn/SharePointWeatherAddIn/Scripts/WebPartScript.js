@@ -5,8 +5,49 @@
     var location = getQueryStringParameter("DefaultLocation");
     var tempUnit = getQueryStringParameter("TempUnit");
 
-    console.log(location);
-    console.log(tempUnit);
+    var showWind = getQueryStringParameter("ShowWindSpeed");
+    console.log(showWind);
+    if (showWind == "0") {
+        $("#divSpeed").hide();
+    }
+    else {
+        $("#divSpeed").show();
+    }
+
+    var showWind = getQueryStringParameter("ShowWindDirection");
+     if (showWind == "0") {
+        $("#divDirection").hide();
+    }
+    else {
+        $("#divDirection").show();
+     }
+
+     var showWind = getQueryStringParameter("ShowForecast");
+     if (showWind == "0") {
+         $("#divPanel").hide();
+     }
+     else {
+         $("#divPanel").show();
+     }
+
+     var layout = getQueryStringParameter("LayoutTemplate");
+     if (layout == "0") {
+         $("#wrapper").removeClass("coral");
+         $("#wrapper").removeClass("chartreuse");
+         $("#wrapper").addClass("aquamarine");
+     }
+     else if (layout == "1") {
+         $("#wrapper").removeClass("aquamarine");
+         $("#wrapper").removeClass("chartreuse");
+         $("#wrapper").addClass("coral");
+     }
+     else {
+         $("#wrapper").removeClass("coral");
+         $("#wrapper").removeClass("aquamarine");
+         $("#wrapper").addClass("chartreuse");
+     }
+    
+    
 
     //--------------------------------------------------------------------------------------------------------------------------------------
     // Date and Time for current day and the next 5 days
@@ -66,6 +107,7 @@
 
     function init() {
         getCoordinates(location);
+        
     }
 
     function getCoordinates(locationParameter) {
