@@ -1,1 +1,17 @@
-﻿2016-10-12: Skapade projektet
+This is an AddIn for SharePoint developed by David, Chro & Rozhna for the course SharePoint-utveckling - klienttekniker at Nackademin 2016.
+
+The AddIn consists of an AppPart and a Single Page Application that displays the current weather as well as a forecast for the upcoming days. There is a settings window where you can change location, temperature unit, and other things.
+
+The weather data being used is from the DarkSky API, which allows up to 1000 requests per day for free. After the free requests are used up the price is $0.0001 per forecast. This resets the next day.
+
+AppPart:
+
+
+Single Page Application:
+The Single Page Application(SPA) contains more detailed information about the weather. There are three tabs with diffrent information. 
+
+The first tab contains detailed information about the current weather. 
+
+The second tab contains two graphs with the temperatures for the next few days. In the upper graph you can see the temperature for the next 48 hours, and in the second graph you can see the highest and lowest temperatures for the upcoming week.
+
+In the last tab you can change your default location when you access the SPA. You can also change your preferred temperature unit to ether Celsius or Fahrenheit. This is set through a cookie in your browser. Lastly there is also a section about Us, the developers of the AddIn, and some general information you might want.
