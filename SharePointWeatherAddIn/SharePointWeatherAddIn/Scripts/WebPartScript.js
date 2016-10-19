@@ -1,13 +1,25 @@
 ﻿$(document).ready(function () {
+
+    "use strict";
+
+    var activeLocation = Cookies.get("activeLocation") !== undefined ? decodeURI(Cookies.get("activeLocation")) : "Stockholm";
+    var tempUnit = Cookies.get("tempUnit") !== undefined ? Cookies.get("tempUnit") : "C";
+    $('#activeLocationInput').val(activeLocation);
+    $('#tempUnitInput').val(tempUnit);
+
+
     var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/59.3446,18.0237"
     $.ajax({
         url: url,
         dataType: "jsonp",
         success: function (responseData) {
+
+            //--------------------------------------------------------------------------------------------------------------------------------------
+            // Icon for current day and the next 5 days
+
             var skycons = new Skycons({ "color": "black" });
             console.log(responseData.currently.icon);
             skycons.add("testCanvas", responseData.currently.icon);
-
 
             var skycons1 = new Skycons({ "color": "black" });
             console.log(responseData.daily.data[1].icon);
@@ -29,8 +41,6 @@
             console.log(responseData.daily.data[5].icon);
             skycons5.add("testCanvas5", responseData.daily.data[5].icon);
             
-      
-
             getWeatherData();
             skycons.play();
             skycons1.play();
@@ -41,14 +51,18 @@
         }
     });
 
-    var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
-    var dayNames = ["Söndagen", "Måndagen", "Tisdagen", "Onsdagen", "Torsdagen", "Fredagen", "Lördagen"]
-    var dayNames1 = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
+
+    //--------------------------------------------------------------------------------------------------------------------------------------
+    // Date and Time for current day and the next 5 days
+
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var dayNames = [ "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    var dayNames1 = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
   
     var newDate = new Date();
     newDate.setDate(newDate.getDate());
-    $('#Date').html(dayNames[newDate.getDay()] + " den " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+    $('#Date').html(dayNames[newDate.getDay()] + ' ' + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
 
     var newDate1 = new Date();
     newDate1.setDate(newDate1.getDate() + 1);
@@ -89,6 +103,8 @@
         $("#hours").html((hours < 10 ? "0" : "") + hours);
     }, 1000);
 
+    //--------------------------------------------------------------------------------------------------------------------------------------
+    // 
 
     init();
 
@@ -110,20 +126,19 @@
 
    function getWeatherData(lat, lng) {
 
-       
         var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/".concat(lat).concat(",").concat(lng);
         $.ajax({
             url: url,
             dataType: "jsonp",
             success: function (responseData) {
-                initDataTable(responseData);
+                initData(responseData);
 
             }
         });
     }
 
 
-    function initDataTable(weatherData) {
+    function initData(weatherData) {
         console.log(weatherData);
         var locationText = $('#dataLocation');
         var temperatureText = $('#dataTemperature');
@@ -150,8 +165,106 @@
         windDirectionText.text(directions[Math.round(windDirection % 16)]);
         windDirectionDetailText.text(weatherData.currently.windBearing);
 
+        //--------------------------------------------------------------------------------------------------------------------------------------
+        // Max Temp for the next 5 days
+
+        var maxTempText1 = $('#dataMaxTemperature1');
+        var maxTemperature1 = (Math.round(((weatherData.daily.data[1].temperatureMax - 32) * 5) / 9));
+        maxTempText1.text(maxTemperature1);
+
+        var maxTempText2 = $('#dataMaxTemperature2');
+        var maxTemperature2 = (Math.round(((weatherData.daily.data[2].temperatureMax - 32) * 5) / 9));
+        maxTempText2.text(maxTemperature2);
+
+        var maxTempText3 = $('#dataMaxTemperature3');
+        var maxTemperature3 = (Math.round(((weatherData.daily.data[3].temperatureMax - 32) * 5) / 9));
+        maxTempText3.text(maxTemperature3);
+
+        var maxTempText4 = $('#dataMaxTemperature4');
+        var maxTemperature4 = (Math.round(((weatherData.daily.data[4].temperatureMax - 32) * 5) / 9));
+        maxTempText4.text(maxTemperature4);
+
+        var maxTempText5 = $('#dataMaxTemperature5');
+        var maxTemperature5 = (Math.round(((weatherData.daily.data[5].temperatureMax - 32) * 5) / 9));
+        maxTempText5.text(maxTemperature5);
+
+        //--------------------------------------------------------------------------------------------------------------------------------------
+        // Min Temp for the next 5 days
+
+        var minTempText1 = $('#dataMinTemperature1');
+        var minTemperature1 = (Math.round(((weatherData.daily.data[1].temperatureMin - 32) * 5) / 9));
+        minTempText1.text(minTemperature1);
+
+        var minTempText2 = $('#dataMinTemperature2');
+        var minTemperature2 = (Math.round(((weatherData.daily.data[2].temperatureMin - 32) * 5) / 9));
+        minTempText2.text(minTemperature2);
+
+        var minTempText3 = $('#dataMinTemperature3');
+        var minTemperature3 = (Math.round(((weatherData.daily.data[3].temperatureMin - 32) * 5) / 9));
+        minTempText3.text(minTemperature3);
+
+        var minTempText4 = $('#dataMinTemperature4');
+        var minTemperature4 = (Math.round(((weatherData.daily.data[4].temperatureMin - 32) * 5) / 9));
+        minTempText4.text(minTemperature4);
+
+        var minTempText5 = $('#dataMinTemperature5');
+        var minTemperature5 = (Math.round(((weatherData.daily.data[5].temperatureMin - 32) * 5) / 9));
+        minTempText5.text(minTemperature5);
+
+
+
+
+
+
+
+
+        // //Add this to be able to get config values
+        //function getQueryStringParameter(urlParameterKey) {
+        //    var params = document.URL.split('?')[1].split('&');
+        //    var strParams = '';
+        //    for (var i = 0; i < params.length; i = i + 1) {
+        //        var singleParam = params[i].split('=');
+        //        if (singleParam[0] == urlParameterKey)
+        //            return decodeURIComponent(singleParam[1]);
+        //    }
+        //}
+
+
+        //jQuery.noConflict();
+        //(function ($) {
+
+        //     //Create variables out of the param value
+        //    var colorValue = getQueryStringParameter('MyEnum');
+        //    var textValue = getQueryStringParameter('MyString');
+
+        //    var defaultLocation = getQueryStringParameter('DefaultLocation');
+        //    var tempUnit = getQueryStringParameter('TempUnit');
+        //    var layoutTemplate = getQueryStringParameter('LayoutTemplate');
+        //    var showWindDirection = getQueryStringParameter('ShowWindDirection');
+        //    var showWindSpeed = getQueryStringParameter('ShowWindSpeed');
+        //    var showForecast = getQueryStringParameter('ShowForecast');
+
+        //     //Do something based on incoming param values
+        //    if (layoutTemplate == 0) {
+        //        $("#LayoutTemplate").html(defaultLocation).css("color", "green");
+        //    };
+        //    if (layoutTemplate == 1) {
+        //        $("#LayoutTemplate").html(defaultLocation).css("color", "red");
+        //    };
+        //    if (layoutTemplate == 2) {
+        //        $("#LayoutTemplate").html(defaultLocation).css("color", "blue");
+        //    };
+
+
+        //})(jQuery);
 
     }
+
+
+
+
+
+
 
 });
 

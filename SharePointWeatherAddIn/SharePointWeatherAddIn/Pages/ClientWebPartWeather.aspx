@@ -20,30 +20,28 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div>
-                        <div class="clock"></div>
+
                         <div id="Date"></div>
 
-                        <div id="hours" style="float: left;"></div>
-                        <div id="point" style="float: left;">:</div>
-                        <div id="min" style="float: left;"></div>
-                        <div id="point" style="float: left;">:</div>
-                        <div id="sec"></div>
+                        <div id="clock">
+                            <div id="hours" style="float: left;"></div>
+                            <div id="point" style="float: left;">:</div>
+                            <div id="min" style="float: left;"></div>
+                            <div id="point1" style="float: left;">:</div>
+                            <div id="sec"></div>
 
-
-
+                        </div>
                     </div>
-
                 </div>
 
                 <div class="panel-body">
 
                     <canvas id="testCanvas" class="img"></canvas>
                     <div class="col-sm-12">
-                        <span>
-                            <h3 id="dataLocation"></h3>
 
-                        </span>
+                        <h3 id="dataLocation"></h3>
                         <h5 id="dataWeatherText"></h5>
+
                     </div>
 
                     <div class="col-sm-4">
@@ -54,7 +52,7 @@
                     </div>
                     <div class="col-sm-4">
                         <h4>Wind speed</h4>
-                        <p><strong><span id="dataWindSpeed"></span> m/s</strong></p>
+                        <p><strong><span id="dataWindSpeed"></span>m/s</strong></p>
                     </div>
                     <div class="col-sm-4">
                         <h4>Wind direction</h4>
@@ -71,38 +69,46 @@
                         <br>
                         <div id="Date1"></div>
                         <br>
-                       <canvas id="testCanvas1" class="img" style="height:80px; width:90px;"></canvas>
-                        <br />
-                        
+                        <canvas id="testCanvas1" class="img" style="height: 80px; width: 90px;"></canvas>
+                        <strong>Max <span id="dataMaxTemperature1"></span>°C</strong>
+                        <br>
+                        <strong>Min <span id="dataMinTemperature1"></span>°C</strong>
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date2"></div>
-                          <br>
-                       <canvas id="testCanvas2" class="img" style="height:80px; width:90px;"></canvas>
-                        <br />
-                       
+                        <br>
+                        <canvas id="testCanvas2" class="img" style="height: 80px; width: 90px;"></canvas>
+                        <strong>Max <span id="dataMaxTemperature2"></span>°C</strong>
+                        <br>
+                        <strong>Min <span id="dataMinTemperature2"></span>°C</strong>
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date3"></div>
-                          <br>
-                       <canvas id="testCanvas3" class="img" style="height:80px; width:90px;"></canvas>
-                        <br />
+                        <br>
+                        <canvas id="testCanvas3" class="img" style="height: 80px; width: 90px;"></canvas>
+                        <strong>Max <span id="dataMaxTemperature3"></span>°C</strong>
+                        <br>
+                        <strong>Min <span id="dataMinTemperature3"></span>°C</strong>
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date4"></div>
-                          <br>
-                       <canvas id="testCanvas4" class="img" style="height:80px; width:90px;"></canvas>
-                        <br />
+                        <br>
+                        <canvas id="testCanvas4" class="img" style="height: 80px; width: 90px;"></canvas>
+                        <strong>Max <span id="dataMaxTemperature4"></span>°C</strong>
+                        <br>
+                        <strong>Min <span id="dataMinTemperature4"></span>°C</strong>
                     </div>
                     <div class="box2">
                         <br>
                         <div id="Date5"></div>
-                          <br>
-                       <canvas id="testCanvas5" class="img" style="height:80px; width:90px;"></canvas>
-                        <br />
+                        <br>
+                        <canvas id="testCanvas5" class="img" style="height: 80px; width: 90px;"></canvas>
+                        <strong>Max <span id="dataMaxTemperature5"></span>°C</strong>
+                        <br>
+                        <strong>Min <span id="dataMinTemperature5"></span>°C</strong>
                     </div>
                 </div>
             </div>
@@ -113,12 +119,13 @@
 
 
 
+
     <link href="../Scripts/WebPartStyle.css" rel="stylesheet" />
     <script src="../Scripts/moment.js"></script>
     <script src="../Scripts/js.cookie.js"></script>
     <script src="../fonts/skycons.js" type="text/javascript"></script>
     <script src="../Scripts/WebPartScript.js"></script>
-    
+
 
 </body>
 </html>
