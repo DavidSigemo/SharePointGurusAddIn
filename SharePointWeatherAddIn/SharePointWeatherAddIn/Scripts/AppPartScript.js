@@ -1,15 +1,38 @@
 ﻿(function (global) {
     "use strict";
 
-    var activeLocation = Cookies.get("activeLocation") !== undefined ? decodeURI(Cookies.get("activeLocation")) : "Stockholm";
+    $('#ctl00_PlaceHolderSiteName_onetidProjectPropertyTitle').text("SharePoint Gurus Weather AddIn");
+
+    var savedWeather = JSON.parse(localStorage.getItem("weatherData"));
+    var activeLocation = Cookies.get("activeLocation") !== null ? decodeURI(Cookies.get("activeLocation")) : "Stockholm";
     var tempUnit = Cookies.get("tempUnit") !== undefined ? Cookies.get("tempUnit") : "C";
-    $('#activeLocationInput').val(activeLocation);
+    $('#defaultLocationInput').val(activeLocation);
     $('#tempUnitInput').val(tempUnit);
 
     init();
 
     function init() {
-        getCoordinates(activeLocation);
+        var getNewWeather = true;
+        if (savedWeather !== null) {
+            var savedTime = moment.unix(savedWeather.Data.currently.time).format("YYYY-MM-DD hh:mm");
+            var todayTime = moment().format("YYYY-MM-DD 00:00");
+
+            if (moment(savedTime).isAfter(todayTime)) {
+                getNewWeather = false;
+            }
+        }
+
+        if (!getNewWeather && savedWeather.LocationName !== activeLocation) {
+            getNewWeather = true;
+        }
+
+
+        if (getNewWeather) {
+            getCoordinates(activeLocation);
+        } else {
+            initDataTable(savedWeather);
+            initGraph(savedWeather);
+        }
         eventhandlers();
     }
 
@@ -65,7 +88,7 @@
         $(window).resize(function () {
             var height = $('#graphContent').height() / 2;
             var width = $('#graphContent').width();
-            
+
             if ($("#highchart-tempDay").highcharts() !== undefined && $("#highchart-MaxMin").highcharts() !== undefined) {
                 $("#highchart-tempDay").highcharts().setSize(width, height, true);
                 $("#highchart-MaxMin").highcharts().setSize(width, height, true);
@@ -88,32 +111,42 @@
     }
 
     function getCoordinates(location) {
-        var encodedLocation = encodeURI(location);
-        var apiKey = "AIzaSyB0O3kAHmPtbwUHu45zojOyMgFYGj51Kvc";
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(encodedLocation).concat('&key=').concat(apiKey);
-        console.log("geocode URL", url);
+        var savedLocation = JSON.parse(localStorage.getItem("locationCoordinates"));
 
-        $.get(url, function (responseData) {
-            var location = responseData.results[0].geometry.location;
-            var lat = location.lat;
-            var lng = location.lng;
-            getWeatherData(lat, lng);
-        })
+        if (savedLocation === null || location !== savedLocation.LocationName) {
+            var encodedLocation = encodeURI(location);
+            var apiKey = "AIzaSyB0O3kAHmPtbwUHu45zojOyMgFYGj51Kvc";
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(encodedLocation).concat('&key=').concat(apiKey);
+
+            $.get(url, function (responseData) {
+                var locationResponse = responseData.results[0].geometry.location;
+                var lat = locationResponse.lat;
+                var lng = locationResponse.lng;
+                var savedCoordinates = { "LocationName": location, "Lat": lat, "Lng": lng };
+                localStorage.setItem("locationCoordinates", JSON.stringify(savedCoordinates));
+                getWeatherData(location, lat, lng);
+            })
+        } else {
+            getWeatherData(savedLocation.LocationName, savedLocation.Lat, savedLocation.Lng);
+        }
     }
 
-    function getWeatherData(lat, lng) {
+    function getWeatherData(location, lat, lng) {
         var url = "https://api.darksky.net/forecast/6ebbfb6cba7bb3d4c1b0d03800b23abe/".concat(lat).concat(",").concat(lng);
         $.ajax({
             url: url,
             dataType: "jsonp",
             success: function (responseData) {
-                initDataTable(responseData);
-                initGraph(responseData);
+                var weatherData = { "LocationName": location, "Data": responseData };
+                localStorage.setItem("weatherData", JSON.stringify(weatherData));
+                initDataTable(weatherData);
+                initGraph(weatherData);
             }
         });
     }
 
-    function initDataTable(weatherData) {
+    function initDataTable(inputData) {
+        var weatherData = inputData.Data;
         var locationText = $('#dataLocation');
         var temperatureText = $('#dataTemperature');
         var weatherIcon = $('#dataWeatherIcon');
@@ -126,7 +159,7 @@
         var windDirectionDetailText = $('#dataWindDirectionDetailed');
         var windDirectionImg = $('#windDirArrowImg');
 
-        var location = activeLocation;
+        var location = inputData.LocationName;
         locationText.text(location);
 
         var temperature = weatherData.currently.temperature;
@@ -166,26 +199,29 @@
         windDirectionImg.css("webkitTransform", "rotate(" + currentWindDir + "deg)");
     }
 
-    function initGraph(weatherData) {
-        var location = activeLocation;
+    function initGraph(inputData) {
+        var weatherData = inputData.Data;
+
+        var location = inputData.LocationName;
         var seriesTempHourly = [];
         var tempHourly = [];
         var seriesMaxMin = [];
         var maxTempsDaily = [];
         var minTempsDaily = [];
 
-        $.each(weatherData.hourly.data, function (index, value) {
+
+        $.each(weatherData.hourly.data.splice(0, 25), function (index, value) {
             var tempFahrenheit = value.temperature;
             if (tempUnit === "C") {
                 var tempCelcius = ((tempFahrenheit - 32) * 5) / 9;
-                tempHourly.push(Math.round(tempCelcius));
+                tempHourly.push([moment.unix(value.time).format("HH"), Math.round(tempCelcius)]);
             }
             else {
-                tempHourly.push(Math.round(tempFahrenheit));
+                tempHourly.push([moment.unix(value.time).format("HH"), Math.round(tempCelcius)]);
             }
         });
         seriesTempHourly.push({
-            name: "Temperature for the next 48 hours",
+            name: "Temperature for the next 24 hours",
             data: tempHourly
         });
         $.each(weatherData.daily.data, function (index, value) {
@@ -217,10 +253,11 @@
             name: 'Lowest temperatures',
             data: minTempsDaily
         });
+        console.log(seriesTempHourly[0].data[0][0]);
 
         $('#highchart-tempDay').highcharts({
             title: {
-                text: 'Temperature for the next 48 hours for ' + location,
+                text: 'Temperature for the next 24 hours for ' + location,
                 x: -20 //center
             },
             subtitle: {
@@ -229,6 +266,11 @@
                 x: -20
             },
             xAxis: {
+                tickInterval: 1,
+                labels: {
+                    enabled: true,
+                    formatter: function () { return seriesTempHourly[0].data[this.value][0]; },
+                }
                 // columns: ["0", "1", "2", "3", "4", "5", "6"]
             },
             yAxis: {
@@ -277,7 +319,7 @@
                 x: -20
             },
             xAxis: {
-                // columns: ["0", "1", "2", "3", "4", "5", "6"]
+                tickInterval: 1
             },
             yAxis: {
                 title: {

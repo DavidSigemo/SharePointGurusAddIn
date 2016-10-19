@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../Scripts/highcharts.js"></script>
     <script type="text/javascript" src="../fonts/skycons.js"></script>
     <script type="text/javascript" src="../Scripts/js.cookie.js"></script>
+    <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <meta name="WebPartPageExpansion" content="full" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="Stylesheet" type="text/css" href="../Content/AppPartStyle.css" />
@@ -102,7 +103,7 @@
                     <div class="col-sm-12">
                         <label for="defaultLocationInput">
                             Default Location 
-                            <input type="text" id="defaultLocationInput" name="defaultLocationInput" class="form-control" value="Stockholm" placeholder="e.g. Stockholm.." title="" />
+                            <input type="text" id="defaultLocationInput" name="defaultLocationInput" class="form-control" value="" placeholder="e.g. Stockholm.." title="" />
                         </label>
                     </div>
                     <div class="col-sm-12">
@@ -126,10 +127,10 @@
                 </div>
                 <div id="otherBody" class="row">
                     <div class="col-sm-12">
-                        <p>This weather AddIn was developed by blablabla...</p>
-                        <p>To report an issue, click <a href="https://www.google.com">here</a></p>
-                        <p>For information about the AddIn and how to use it please see the <a href="https://www.google.com">manual</a></p>
-                        <p><a href="https://www.google.com">Contact us</a></p>
+                        <p>This weather AddIn was developed by David, Chro & Rozhna</p>
+                        <p>To report an issue, click <a href="https://github.com/DavidSigemo/SharePointGurusAddIn/issues">here</a></p>
+                        <p>For information about the AddIn and how to use it please see the <a href="https://github.com/DavidSigemo/SharePointGurusAddIn/blob/master/SharePointWeatherAddIn/SharePointWeatherAddIn/Documentation/changelog.txt">manual</a></p>
+                        <p><a href="https://github.com/DavidSigemo/SharePointGurusAddIn">Contact us</a></p>
                         <p>V1.0</p>
                     </div>
                 </div>
