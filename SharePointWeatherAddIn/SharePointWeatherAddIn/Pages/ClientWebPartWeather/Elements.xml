@@ -5,7 +5,7 @@
     <!-- Content element identifies the location of the page that will render inside the client web part
          Properties are referenced on the query string using the pattern _propertyName_
          Example: Src="~appWebUrl/Pages/ClientWebPart1.aspx?Property1=_property1_" -->
-    <Content Type="html" Src="~appWebUrl/Pages/ClientWebPartWeather.aspx?{StandardTokens}&amp;DefaultLocation=_DefaultLocation_&amp;TempUnit=_TempUnit__&amp;DisplayTemplate=_DisplayTemplate__&amp;ShowWindDirection=_ShowWindDirection__&amp;ShowWindSpeed=_ShowWindSpeed__&amp;ShowForecast=_ShowForecast_" />
+    <Content Type="html" Src="~appWebUrl/Pages/ClientWebPartWeather.aspx?{StandardTokens}&amp;DefaultLocation=_DefaultLocation_&amp;TempUnit=_TempUnit_&amp;DisplayTemplate=_DisplayTemplate_&amp;ShowWindDirection=_ShowWindDirection_&amp;ShowWindSpeed=_ShowWindSpeed_&amp;ShowForecast=_ShowForecast_" />
 
     <!-- Define properties in the Properties element.
          Remember to put Property Name on the Src attribute of the Content element above. -->
@@ -45,42 +45,59 @@
         DefaultValue="1"
         RequiresDesignerPermission="true">
         <EnumItems>
-          <EnumItem Value="0" WebDisplayName="Light"/>
-          <EnumItem Value="1" WebDisplayName="Normal"/>
-          <EnumItem Value="2" WebDisplayName="Dark"/>
+          <EnumItem Value="0" WebDisplayName="aquamarine"/>
+          <EnumItem Value="1" WebDisplayName="coral"/>
+          <EnumItem Value="2" WebDisplayName="chartreuse"/>
         </EnumItems>
       </Property>
 
       <Property
         Name="ShowWindDirection"
-        Type="boolean"
+        Type="enum"
         WebBrowsable="true"
         WebDisplayName="Display Wind Direction"
         WebDescription="Use this to choose if wind direction should be displayed."
         WebCategory="Weather Settings"
-        DefaultValue="true"
-        RequiresDesignerPermission="true" />
+        DefaultValue="1"
+        RequiresDesignerPermission="false">
+
+        <EnumItems>
+          <EnumItem Value="1" WebDisplayName="Yes"/>
+          <EnumItem Value="0" WebDisplayName="No"/>
+        </EnumItems>
+      </Property>
 
       <Property
         Name="ShowWindSpeed"
-        Type="boolean"
+        Type="enum"
         WebBrowsable="true"
         WebDisplayName="Display Wind Speed"
         WebDescription="Use this to choose if wind speed should be displayed."
         WebCategory="Weather Settings"
-        DefaultValue="true"
-        RequiresDesignerPermission="true" />
+        DefaultValue="1"
+        RequiresDesignerPermission="false">
+
+        <EnumItems>
+          <EnumItem Value="1" WebDisplayName="Yes"/>
+          <EnumItem Value="0" WebDisplayName="No"/>
+        </EnumItems>
+      </Property>
 
       <Property
         Name="ShowForecast"
-        Type="boolean"
+        Type="enum"
         WebBrowsable="true"
         WebDisplayName="Display forecast"
         WebDescription="Use this to choose if the forecast for the next 5 days should be displayed"
         WebCategory="Weather Settings"
-        DefaultValue="true"
-        RequiresDesignerPermission="true" />
-    </Properties>
+        DefaultValue="1"
+        RequiresDesignerPermission="false">
 
+        <EnumItems>
+          <EnumItem Value="1" WebDisplayName="Yes"/>
+          <EnumItem Value="0" WebDisplayName="No"/>
+        </EnumItems>
+      </Property>
+    </Properties>
   </ClientWebPart>
 </Elements>
