@@ -218,46 +218,6 @@
 
 
 
-        // //Add this to be able to get config values
-        //function getQueryStringParameter(urlParameterKey) {
-        //    var params = document.URL.split('?')[1].split('&');
-        //    var strParams = '';
-        //    for (var i = 0; i < params.length; i = i + 1) {
-        //        var singleParam = params[i].split('=');
-        //        if (singleParam[0] == urlParameterKey)
-        //            return decodeURIComponent(singleParam[1]);
-        //    }
-        //}
-
-
-        //jQuery.noConflict();
-        //(function ($) {
-
-        //     //Create variables out of the param value
-        //    var colorValue = getQueryStringParameter('MyEnum');
-        //    var textValue = getQueryStringParameter('MyString');
-
-        //    var defaultLocation = getQueryStringParameter('DefaultLocation');
-        //    var tempUnit = getQueryStringParameter('TempUnit');
-        //    var layoutTemplate = getQueryStringParameter('LayoutTemplate');
-        //    var showWindDirection = getQueryStringParameter('ShowWindDirection');
-        //    var showWindSpeed = getQueryStringParameter('ShowWindSpeed');
-        //    var showForecast = getQueryStringParameter('ShowForecast');
-
-        //     //Do something based on incoming param values
-        //    if (layoutTemplate == 0) {
-        //        $("#LayoutTemplate").html(defaultLocation).css("color", "green");
-        //    };
-        //    if (layoutTemplate == 1) {
-        //        $("#LayoutTemplate").html(defaultLocation).css("color", "red");
-        //    };
-        //    if (layoutTemplate == 2) {
-        //        $("#LayoutTemplate").html(defaultLocation).css("color", "blue");
-        //    };
-
-
-        //})(jQuery);
-
     }
 
 
