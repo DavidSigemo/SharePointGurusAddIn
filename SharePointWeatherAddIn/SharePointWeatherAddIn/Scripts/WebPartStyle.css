@@ -32,14 +32,17 @@
     margin-left:15px;
 }
 
-.aquamarine {
-    background-color: aquamarine;
+a{
+    color:white;
+}
+.css0 {
+    background-color: #f3f3f2;
 }
 
-.coral {
-    background-color: coral;
+.css1 {
+    background-color: #fff9e5;
 }
 
-.chartreuse{
-    background-color: chartreuse;
+.css2{
+    background-color: #e6f2ff;
 }

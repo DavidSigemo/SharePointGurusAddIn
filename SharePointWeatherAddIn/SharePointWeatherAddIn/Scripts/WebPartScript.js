@@ -5,49 +5,53 @@
     var location = getQueryStringParameter("DefaultLocation");
     var tempUnit = getQueryStringParameter("TempUnit");
 
-    var showWind = getQueryStringParameter("ShowWindSpeed");
-    console.log(showWind);
-    if (showWind == "0") {
+    var showWindS = getQueryStringParameter("ShowWindSpeed");
+
+    if (showWindS == "0") {
         $("#divSpeed").hide();
     }
     else {
         $("#divSpeed").show();
     }
 
-    var showWind = getQueryStringParameter("ShowWindDirection");
-     if (showWind == "0") {
+    var showWindD = getQueryStringParameter("ShowWindDirection");
+    if (showWindD == "0") {
         $("#divDirection").hide();
     }
     else {
         $("#divDirection").show();
-     }
+    }
 
-     var showWind = getQueryStringParameter("ShowForecast");
-     if (showWind == "0") {
-         $("#divPanel").hide();
-     }
-     else {
-         $("#divPanel").show();
-     }
+    var showForecast = getQueryStringParameter("ShowForecast");
+    if (showForecast == "0") {
+        $("#divPanel").hide();
+    }
+    else {
+        $("#divPanel").show();
+    }
 
-     var layout = getQueryStringParameter("LayoutTemplate");
-     if (layout == "0") {
-         $("#wrapper").removeClass("coral");
-         $("#wrapper").removeClass("chartreuse");
-         $("#wrapper").addClass("aquamarine");
-     }
-     else if (layout == "1") {
-         $("#wrapper").removeClass("aquamarine");
-         $("#wrapper").removeClass("chartreuse");
-         $("#wrapper").addClass("coral");
-     }
-     else {
-         $("#wrapper").removeClass("coral");
-         $("#wrapper").removeClass("aquamarine");
-         $("#wrapper").addClass("chartreuse");
-     }
-    
-    
+
+
+    var layout = getQueryStringParameter("LayoutTemplate");
+    console.log(layout);
+    if (layout == "0") {
+        $("#wrapper").removeClass("css1");
+        $("#wrapper").removeClass("css2");
+        $("#wrapper").addClass("css0");
+    }
+    else if (layout == "1") {
+
+        $("#wrapper").removeClass("css0");
+        $("#wrapper").removeClass("css2");
+        $("#wrapper").addClass("css1");
+    }
+    else {
+
+        $("#wrapper").removeClass("css0");
+        $("#wrapper").removeClass("css1");
+        $("#wrapper").addClass("css2");
+    }
+
 
     //--------------------------------------------------------------------------------------------------------------------------------------
     // Date and Time for current day and the next 5 days
@@ -107,11 +111,11 @@
 
     function init() {
         getCoordinates(location);
-        
+
     }
 
     function getCoordinates(locationParameter) {
-        
+
         var apiKey = "AIzaSyB0O3kAHmPtbwUHu45zojOyMgFYGj51Kvc";
         var url = "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(locationParameter).concat('&key=').concat(apiKey);
 
@@ -138,7 +142,7 @@
 
 
     function initData(weatherData) {
-        console.log(weatherData);
+
         var locationText = $('#dataLocation');
         var temperatureText = $('#dataTemperature');
         var weatherIcon = $('#dataWeatherIcon');
@@ -146,6 +150,7 @@
         var windSpeedText = $('#dataWindSpeed');
         var windDirectionText = $('#dataWindDirection');
         var windDirectionDetailText = $('#dataWindDirectionDetailed');
+
 
         var location = weatherData.timezone.split('/')[1];
         locationText.text(location);
@@ -175,47 +180,92 @@
         // Max Temp for the next 5 days
 
         var maxTempText1 = $('#dataMaxTemperature1');
-        var maxTemperature1 = (Math.round(((weatherData.daily.data[1].temperatureMax - 32) * 5) / 9));
-        maxTempText1.text(maxTemperature1);
+        var maxTemperature1 = weatherData.daily.data[1].temperatureMax;
+        if (tempUnit === "C") {
+            maxTemperature1 = ((maxTemperature1 - 32) * 5) / 9;
+        }
+        maxTemperature1 = Math.round(maxTemperature1);
+        maxTempText1.text(maxTemperature1 + "\u00B0".concat(tempUnit));
 
         var maxTempText2 = $('#dataMaxTemperature2');
-        var maxTemperature2 = (Math.round(((weatherData.daily.data[2].temperatureMax - 32) * 5) / 9));
-        maxTempText2.text(maxTemperature2);
+        var maxTemperature2 = weatherData.daily.data[2].temperatureMax;
+        if (tempUnit === "C") {
+            maxTemperature2 = ((maxTemperature2 - 32) * 5) / 9;
+        }
+        maxTemperature2 = Math.round(maxTemperature2);
+        maxTempText2.text(maxTemperature2 + "\u00B0".concat(tempUnit));;
 
         var maxTempText3 = $('#dataMaxTemperature3');
-        var maxTemperature3 = (Math.round(((weatherData.daily.data[3].temperatureMax - 32) * 5) / 9));
-        maxTempText3.text(maxTemperature3);
+        var maxTemperature3 = weatherData.daily.data[3].temperatureMax;
+        if (tempUnit === "C") {
+            maxTemperature3 = ((maxTemperature3 - 32) * 5) / 9;
+        }
+        maxTemperature3 = Math.round(maxTemperature3);
+        maxTempText3.text(maxTemperature3 + "\u00B0".concat(tempUnit));
 
         var maxTempText4 = $('#dataMaxTemperature4');
-        var maxTemperature4 = (Math.round(((weatherData.daily.data[4].temperatureMax - 32) * 5) / 9));
-        maxTempText4.text(maxTemperature4);
+        var maxTemperature4 = weatherData.daily.data[4].temperatureMax;
+        if (tempUnit === "C") {
+            maxTemperature4 = ((maxTemperature4 - 32) * 5) / 9;
+        }
+        maxTemperature4 = Math.round(maxTemperature4);
+        maxTempText4.text(maxTemperature4 + "\u00B0".concat(tempUnit));
 
         var maxTempText5 = $('#dataMaxTemperature5');
-        var maxTemperature5 = (Math.round(((weatherData.daily.data[5].temperatureMax - 32) * 5) / 9));
-        maxTempText5.text(maxTemperature5);
+        var maxTemperature5 = weatherData.daily.data[5].temperatureMax;
+        if (tempUnit === "C") {
+            maxTemperature5 = ((maxTemperature5 - 32) * 5) / 9;
+        }
+        maxTemperature5 = Math.round(maxTemperature5);
+        maxTempText5.text(maxTemperature5 + "\u00B0".concat(tempUnit));
+
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------
         // Min Temp for the next 5 days
 
         var minTempText1 = $('#dataMinTemperature1');
-        var minTemperature1 = (Math.round(((weatherData.daily.data[1].temperatureMin - 32) * 5) / 9));
-        minTempText1.text(minTemperature1);
+        var minTemperature1 = weatherData.daily.data[1].temperatureMin;
+        if (tempUnit === "C") {
+            minTemperature1 = ((minTemperature1 - 32) * 5) / 9;
+        }
+        minTemperature1 = Math.round(minTemperature1);
+        minTempText1.text(minTemperature1 + "\u00B0".concat(tempUnit));
 
         var minTempText2 = $('#dataMinTemperature2');
-        var minTemperature2 = (Math.round(((weatherData.daily.data[2].temperatureMin - 32) * 5) / 9));
-        minTempText2.text(minTemperature2);
+        var minTemperature2 = weatherData.daily.data[2].temperatureMin;
+        if (tempUnit === "C") {
+            minTemperature2 = ((minTemperature2 - 32) * 5) / 9;
+        }
+        minTemperature2 = Math.round(minTemperature2);
+        minTempText2.text(minTemperature2 + "\u00B0".concat(tempUnit));
 
         var minTempText3 = $('#dataMinTemperature3');
-        var minTemperature3 = (Math.round(((weatherData.daily.data[3].temperatureMin - 32) * 5) / 9));
-        minTempText3.text(minTemperature3);
+        var minTemperature3 = weatherData.daily.data[3].temperatureMin;
+        if (tempUnit === "C") {
+            minTemperature3 = ((minTemperature3 - 32) * 5) / 9;
+        }
+        minTemperature3 = Math.round(minTemperature3);
+        minTempText3.text(minTemperature3 + "\u00B0".concat(tempUnit));
 
         var minTempText4 = $('#dataMinTemperature4');
-        var minTemperature4 = (Math.round(((weatherData.daily.data[4].temperatureMin - 32) * 5) / 9));
-        minTempText4.text(minTemperature4);
+        var minTemperature4 = weatherData.daily.data[4].temperatureMin;
+        if (tempUnit === "C") {
+            minTemperature4 = ((minTemperature4 - 32) * 5) / 9;
+        }
+        minTemperature4 = Math.round(minTemperature4);
+        minTempText4.text(minTemperature4 + "\u00B0".concat(tempUnit));
 
         var minTempText5 = $('#dataMinTemperature5');
-        var minTemperature5 = (Math.round(((weatherData.daily.data[5].temperatureMin - 32) * 5) / 9));
-        minTempText5.text(minTemperature5);
+        var minTemperature5 = weatherData.daily.data[5].temperatureMin;
+        if (tempUnit === "C") {
+            minTemperature5 = ((minTemperature5 - 32) * 5) / 9;
+        }
+        minTemperature5 = Math.round(minTemperature5);
+        minTempText5.text(minTemperature5 + "\u00B0".concat(tempUnit));
+
+
+
 
 
         // Icon for current day and the next 5 days

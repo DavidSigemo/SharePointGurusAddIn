@@ -44,10 +44,11 @@
         WebCategory="Weather Settings"
         DefaultValue="1"
         RequiresDesignerPermission="true">
+        
         <EnumItems>
-          <EnumItem Value="0" WebDisplayName="aquamarine"/>
-          <EnumItem Value="1" WebDisplayName="coral"/>
-          <EnumItem Value="2" WebDisplayName="chartreuse"/>
+          <EnumItem Value="2" WebDisplayName="lightblue"/>
+          <EnumItem Value="1" WebDisplayName="pink"/>
+          <EnumItem Value="0" WebDisplayName="lightgray"/>
         </EnumItems>
       </Property>
 
