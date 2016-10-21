@@ -32,7 +32,7 @@
 
 
 
-    var layout = getQueryStringParameter("LayoutTemplate");
+    var layout = getQueryStringParameter("DisplayTemplate");
     console.log(layout);
     if (layout == "0") {
         $("#wrapper").removeClass("css1");

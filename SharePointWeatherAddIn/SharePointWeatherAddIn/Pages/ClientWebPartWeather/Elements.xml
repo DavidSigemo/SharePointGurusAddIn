@@ -36,10 +36,10 @@
       </Property>
 
       <Property
-        Name="LayoutTemplate"
+        Name="DisplayTemplate"
         Type="enum"
         WebBrowsable="true"
-        WebDisplayName="Layout Template"
+        WebDisplayName="Display Template"
         WebDescription="Use this to change the layout of the weather AddIn."
         WebCategory="Weather Settings"
         DefaultValue="1"
